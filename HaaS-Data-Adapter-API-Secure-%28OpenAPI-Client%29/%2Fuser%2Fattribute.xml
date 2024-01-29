@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:con="http://eviware.com/soapui/config" name="/user/attribute" path="/user/attribute" id="e3624e0e-62ad-48d5-b52a-6786c483cd37">
+  <con:settings id="7a3552a8-5ded-4711-8949-b0a4bdfd6e4b">
+    <con:setting id="e3624e0e-62ad-48d5-b52a-6786c483cd37fileName">%2Fuser%2Fattribute</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="getUsernameAttributes" id="2691be1b-99e6-4eb1-bbdc-be01feca3d1f" method="POST">
+    <con:description>Accept a digital service identifier (Username) and return relevant details to conduct operations without already knowing the User Principal.</con:description>
+    <con:settings/>
+    <con:parameters>
+      <con:parameter>
+        <con:name>x-fapi-interaction-id</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>An [RFC4122](https://tools.ietf.org/html/rfc4122) UUID used as a correlation id. If provided, the data holder must play back this value in the x-fapi-interaction-id response header. If not provided a [RFC4122](https://tools.ietf.org/html/rfc4122) UUID value is required to be provided in the response header to track the interaction.</con:description>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>x-haas-realm-name</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The name of the realm that data is being requested for. Necessary for holders that have multiple brands that should not share data between them.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-haas-v</con:name>
+        <con:style>HEADER</con:style>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-haas-performance-tier</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>This indicates which performance tier according to the Data Standards the request originates</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-fapi-customer-ip-address</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The customer's original IP address if the customer is currently logged in to the Data Recipient Software Product.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-cds-client-headers</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The customer's original standard http headers [Base64](https://consumerdatastandardsaustralia.github.io/standards/#common-field-types) encoded, including the original User Agent header, if the customer is currently logged in to the Data Recipient Software Product. Mandatory for customer present calls. Not required for unattended or unauthenticated calls.</con:description>
+      </con:parameter>
+    </con:parameters>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:description>Success</con:description>
+      <con:sampleContent>{
+  "version" : "V0",
+  "userId" : "b5d1da97-a796-4e8f-9221-cc3cffafb567",
+  "otpType" : "MOBILE",
+  "emailAddresses" : [ {
+    "address" : "john@doe.com",
+    "isPreferred" : true,
+    "purpose" : "HOME"
+  } ],
+  "phoneNumbers" : [ {
+    "areaCode" : "string",
+    "countryCode" : "string",
+    "extension" : "string",
+    "fullNumber" : "+61439123123",
+    "isPreferred" : true,
+    "number" : "0439123123",
+    "purpose" : "MOBILE"
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>400</con:status>
+      <con:params/>
+      <con:description>Some details captured to identify the user were invalid or missing</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:au-cds:error:cds-all:LoginInitField/Missing",
+    "title" : "Missing Required Field",
+    "detail" : "fieldName missing",
+    "meta" : {
+      "fields" : [ "USERNAME" ],
+      "urn" : "urn:au-cds:error:cds-all:LoginInitField/Missing"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>404</con:status>
+      <con:params/>
+      <con:description>This resource does not exist in the upstream system</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:au-cds:error:cds-all:Resource/Invalid",
+    "title" : "Invalid Resource",
+    "detail" : "The requested resource identifier is permanently unavailable.",
+    "meta" : {
+      "urn" : "urn:au-cds:error:cds-all:Resource/Invalid"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>451</con:status>
+      <con:params/>
+      <con:description>The request was well formed but was unable to be shared due to legal reasons</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:dio:error:cds-all:Resource/LegalBlock",
+    "title" : "Legal Block",
+    "detail" : "Request blocked for Legal Reasons",
+    "meta" : {
+      "urn" : "urn:dio:error:cds-all:Resource/LegalBlock"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="REQUEST">
+      <con:mediaType>application/json</con:mediaType>
+      <con:params/>
+      <con:sampleContent>{
+  "version" : "V0",
+  "username" : "customer@email.com"
+}</con:sampleContent>
+    </con:representation>
+    <con:request name="Request 1" id="b5fe79dd-3b4f-41a3-b206-868e221a240a" mediaType="application/json">
+      <con:settings/>
+      <con:endpoint>https://ods.data.holder/dio-au/v0</con:endpoint>
+      <con:request>{\r
+  "version" : "V0",\r
+  "username" : "customer@email.com"\r
+}</con:request>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:parameters/>
+      <con:environmentSpec>
+        <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">
+          <con:authProfile>CDR</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+  </con:method>
+</con:resource>

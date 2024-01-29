@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:con="http://eviware.com/soapui/config" name="/meta/endpoints" path="/meta/endpoints" id="8056bda0-586b-4393-af79-bf7015a89e15">
+  <con:settings id="1b559fda-bc5e-4659-b287-accfe13eac60">
+    <con:setting id="8056bda0-586b-4393-af79-bf7015a89e15fileName">%2Fmeta%2Fendpoints</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="getEndpointMeta" id="fe80dc19-e893-4a8b-967b-1d046e26e47e" method="GET">
+    <con:description>Retrieve the endpoint metadata of the endpoints that this adapter supports</con:description>
+    <con:settings/>
+    <con:parameters>
+      <con:parameter>
+        <con:name>x-fapi-interaction-id</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>An [RFC4122](https://tools.ietf.org/html/rfc4122) UUID used as a correlation id. If provided, the data holder must play back this value in the x-fapi-interaction-id response header. If not provided a [RFC4122](https://tools.ietf.org/html/rfc4122) UUID value is required to be provided in the response header to track the interaction.</con:description>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>x-haas-realm-name</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The name of the realm that data is being requested for. Necessary for holders that have multiple brands that should not share data between them.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-haas-max-v</con:name>
+        <con:style>HEADER</con:style>
+      </con:parameter>
+    </con:parameters>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:description>Success</con:description>
+      <con:sampleContent>{
+  "version" : "V1",
+  "data" : {
+    "common" : {
+      "getCustomer" : {
+        "flags" : [ "SUPPORTS_USERID_QUERY_PARAM", "SUPPORTS_TIER_HEADER", "SUPPORTS_CONSUMER_HEADERS" ],
+        "responseVersions" : [ "V0" ]
+      },
+      "getUser" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER", "SUPPORTS_CONSUMER_HEADERS" ],
+        "requestVersions" : [ "V0" ],
+        "responseVersions" : [ "V0" ]
+      }
+    },
+    "auth" : {
+      "initLogin" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER", "SUPPORTS_CONSUMER_HEADERS" ],
+        "requestVersions" : [ "V0" ],
+        "responseVersions" : [ "V0" ]
+      },
+      "verifyLogin" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER", "SUPPORTS_CONSUMER_HEADERS" ],
+        "requestVersions" : [ "V0" ],
+        "responseVersions" : [ "V0" ]
+      },
+      "getUsernameAttributes" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER" ],
+        "requestVersions" : [ "V0" ],
+        "responseVersions" : [ "V0" ]
+      },
+      "getUserPrincipals" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER", "SUPPORTS_CONSUMER_HEADERS" ],
+        "responseVersions" : [ "V0" ]
+      }
+    },
+    "admin" : {
+      "getHealth" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER" ],
+        "responseVersions" : [ "V0" ]
+      },
+      "getClosedPrincipals" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER" ],
+        "responseVersions" : [ "V0" ]
+      }
+    },
+    "banking" : {
+      "listBankingAccounts" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER", "SUPPORTS_CONSUMER_HEADERS" ],
+        "responseVersions" : [ "V0" ]
+      },
+      "listBankingPayments" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER", "SUPPORTS_CONSUMER_HEADERS" ],
+        "responseVersions" : [ "V0" ]
+      },
+      "listBankingPayees" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER", "SUPPORTS_CONSUMER_HEADERS" ],
+        "responseVersions" : [ "V0" ]
+      },
+      "listBankingTransactions" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER", "SUPPORTS_CONSUMER_HEADERS" ],
+        "responseVersions" : [ "V0" ]
+      }
+    },
+    "energy" : {
+      "listEnergyAccounts" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER", "SUPPORTS_CONSUMER_HEADERS" ],
+        "responseVersions" : [ "V0" ]
+      },
+      "getEnergyPaymentSchedule" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER", "SUPPORTS_CONSUMER_HEADERS" ],
+        "responseVersions" : [ "V0" ]
+      },
+      "getEnergyConcessions" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER", "SUPPORTS_CONSUMER_HEADERS" ],
+        "responseVersions" : [ "V0" ]
+      },
+      "listEnergyInvoices" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER", "SUPPORTS_CONSUMER_HEADERS" ],
+        "responseVersions" : [ "V0" ]
+      },
+      "listEnergyBillings" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER", "SUPPORTS_CONSUMER_HEADERS" ],
+        "responseVersions" : [ "V0" ]
+      }
+    },
+    "device" : {
+      "getFRMPDetails" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER", "SUPPORTS_CONSUMER_HEADERS" ],
+        "requestVersions" : [ "V0" ],
+        "responseVersions" : [ "V0" ]
+      }
+    },
+    "notifications" : {
+      "sendNotification" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER" ],
+        "requestVersions" : [ "V0" ],
+        "responseVersions" : [ "V0" ]
+      },
+      "getUserNotificationInfo" : {
+        "flags" : [ "SUPPORTS_TIER_HEADER", "SUPPORTS_CONSUMER_HEADERS" ],
+        "responseVersions" : [ "V0" ]
+      }
+    }
+  }
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>400</con:status>
+      <con:params/>
+      <con:description>Request has malformed, missing or non-compliant JSON body or URL parameters.</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:au-cds:error:cds-all:Field/Invalid",
+    "title" : "Invalid Field",
+    "detail" : "Invalid format supplied for fieldName",
+    "meta" : {
+      "urn" : "urn:au-cds:error:cds-all:Field/Invalid"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:request name="Request 1" id="ef39e746-16b6-400f-9ef0-7bfd6f499f15" mediaType="application/json">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+      </con:settings>
+      <con:endpoint>https://ods.data.holder/dio-au/v0</con:endpoint>
+      <con:request/>
+      <con:originalUri>https://qu6ri9ljd1.execute-api.ap-southeast-2.amazonaws.com/v1/meta/endpoints</con:originalUri>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters>
+        <con:entry key="x-haas-realm-name" value="EQL"/>
+      </con:parameters>
+      <con:environmentSpec>
+        <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">
+          <con:authProfile>CDR</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+  </con:method>
+</con:resource>

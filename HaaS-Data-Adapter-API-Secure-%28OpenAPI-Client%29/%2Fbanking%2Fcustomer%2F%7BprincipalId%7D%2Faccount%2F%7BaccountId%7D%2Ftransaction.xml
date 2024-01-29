@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:con="http://eviware.com/soapui/config" name="/banking/customer/{principalId}/account/{accountId}/transaction" path="/banking/customer/{principalId}/account/{accountId}/transaction" id="205e3b48-43e0-464a-a50e-02eaea11c7d6">
+  <con:settings id="01126a47-e1f7-41c4-b959-e20c87973581">
+    <con:setting id="205e3b48-43e0-464a-a50e-02eaea11c7d6fileName">%2Fbanking%2Fcustomer%2F%7BprincipalId%7D%2Faccount%2F%7BaccountId%7D%2Ftransaction</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="listBankingTransactions" id="651dc918-dcd6-4b6d-8d2c-7c2afd410959" method="GET">
+    <con:description>Retrieve a list of transactions based on customer and account identifiers. Transactions should be ordered according
+to "effective" date in descending order.
+
+As the date and time for a transaction can alter depending on status and transaction type two separate date/times
+are included in the payload. There are still some scenarios where neither of these time stamps is available. For the
+purpose of filtering and ordering it is expected that the data holder will use the "effective" date/time which will
+be defined as:
+  - Posted date/time if available, then
+  - Execution date/time if available, then
+  - A reasonable date/time nominated by the data holder using internal data structures</con:description>
+    <con:settings/>
+    <con:parameters>
+      <con:parameter>
+        <con:name>x-fapi-interaction-id</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>An [RFC4122](https://tools.ietf.org/html/rfc4122) UUID used as a correlation id. If provided, the data holder must play back this value in the x-fapi-interaction-id response header. If not provided a [RFC4122](https://tools.ietf.org/html/rfc4122) UUID value is required to be provided in the response header to track the interaction.</con:description>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>principalId</con:name>
+        <con:style>TEMPLATE</con:style>
+        <con:description>Represents the Principal being accessed</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>userId</con:name>
+        <con:style>QUERY</con:style>
+        <con:description>The optional user to apply to the adapter call. This allows filtering of resources to only those accessible by the user rather than the whole set of resources available to the principal</con:description>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>accountId</con:name>
+        <con:style>TEMPLATE</con:style>
+        <con:description>Unique Account Identifier</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>transactionIds</con:name>
+        <con:style>QUERY</con:style>
+        <con:description>Filter results based on a set of transaction identifiers</con:description>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>x-haas-realm-name</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The name of the realm that data is being requested for. Necessary for holders that have multiple brands that should not share data between them.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-haas-v</con:name>
+        <con:style>HEADER</con:style>
+      </con:parameter>
+      <con:parameter>
+        <con:name>oldest-time</con:name>
+        <con:style>QUERY</con:style>
+        <con:description>Constrain the transaction history request to transactions with effective time
+at or after this date/time. Format is aligned to DateTimeString common type.
+
+If absent defaults to the following dependent on call:
+- **Banking**: `newest-time` minus 90 days
+- **Energy**: `newest-time` minus 12 months</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>newest-time</con:name>
+        <con:style>QUERY</con:style>
+        <con:description>Constrain the transaction history request to transactions with effective time at or before this date/time. If absent defaults to current date/time. Format is aligned to DateTimeString common type</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>min-amount</con:name>
+        <con:style>QUERY</con:style>
+        <con:description>Filter transactions to only transactions with amounts higher or equal to than this amount</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>max-amount</con:name>
+        <con:style>QUERY</con:style>
+        <con:description>Filter transactions to only transactions with amounts less than or equal to than this amount</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>text</con:name>
+        <con:style>QUERY</con:style>
+        <con:description>Filter transactions to only transactions where this string value is found as a substring of either the reference or description fields. Format is arbitrary ASCII string. This parameter is optionally implemented by data holders. If it is not implemented then a response should be provided as normal without text filtering applied and an additional boolean field named isQueryParamUnsupported should be included in the meta object and set to true (whether the text parameter is supplied or not)</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>page</con:name>
+        <con:value>1</con:value>
+        <con:style>QUERY</con:style>
+        <con:default>1</con:default>
+        <con:description>Page of results to request (standard pagination)</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>page-size</con:name>
+        <con:value>25</con:value>
+        <con:style>QUERY</con:style>
+        <con:default>25</con:default>
+        <con:description>Page size to request. Default is 25 (standard pagination)</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-haas-performance-tier</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>This indicates which performance tier according to the Data Standards the request originates</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-fapi-auth-date</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The time when the customer last logged in to the Data Recipient Software Product as described in [FAPI-R-Draft](https://openid.net/specs/openid-financial-api-part-1-ID2.html). Required for all resource calls (customer present and unattended) if the customer is currently logged. Otherwise optional where the customer has not logged in. Not to be included for unauthenticated calls.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-fapi-customer-ip-address</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The customer's original IP address if the customer is currently logged in to the Data Recipient Software Product.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-cds-client-headers</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The customer's original standard http headers [Base64](https://consumerdatastandardsaustralia.github.io/standards/#common-field-types) encoded, including the original User Agent header, if the customer is currently logged in to the Data Recipient Software Product. Mandatory for customer present calls. Not required for unattended or unauthenticated calls.</con:description>
+      </con:parameter>
+    </con:parameters>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:description>Success</con:description>
+      <con:sampleContent>{
+  "version" : "V0",
+  "data" : [ {
+    "id" : "964e06a838a236f3883cb5b19369ddcf63f95f746f7f4035b7d1f67063800298",
+    "amount" : 55.66,
+    "amountType" : "PAYMENT",
+    "currency" : "AUD",
+    "description" : "Payment for furniture accessories",
+    "reference" : "",
+    "status" : "POSTED",
+    "executionDateTime" : "2015-07-20T15:49:04-07:00",
+    "postingDateTime" : "2015-07-20T15:49:04-07:00",
+    "valueDateTime" : "2015-07-20T15:49:04-07:00",
+    "transactionType" : "BPAY",
+    "bpay" : {
+      "billerCode" : "string",
+      "billerName" : "string",
+      "crn" : "string"
+    },
+    "creditCard" : {
+      "merchantCategoryCode" : "5021",
+      "merchantName" : "Freedom Furniture"
+    },
+    "directDeposit" : {
+      "bsb" : "999999"
+    },
+    "x2p101" : {
+      "payee" : "string",
+      "payer" : "string",
+      "endToEndId" : "string",
+      "extendedDescription" : "An extended description about the X2P1.01 payment",
+      "purposeCode" : "string"
+    }
+  } ],
+  "meta" : {
+    "totalPages" : 1,
+    "totalRecords" : 10,
+    "isQueryParamUnsupported" : true
+  }
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>400</con:status>
+      <con:params/>
+      <con:description>Bad Request</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:au-cds:error:cds-all:Field/Missing",
+    "title" : "Missing Required Field",
+    "detail" : "fieldName missing",
+    "meta" : {
+      "urn" : "urn:au-cds:error:cds-all:Field/Missing"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>404</con:status>
+      <con:params/>
+      <con:description>This resource does not exist in the upstream system</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:au-cds:error:cds-all:Resource/Invalid",
+    "title" : "Invalid Resource",
+    "detail" : "The requested resource identifier is permanently unavailable.",
+    "meta" : {
+      "urn" : "urn:au-cds:error:cds-all:Resource/Invalid"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>422</con:status>
+      <con:params/>
+      <con:description>Unprocessable Entity Error</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:au-cds:error:cds-all:Field/InvalidPage",
+    "title" : "Invalid Page",
+    "detail" : "Invalid Page",
+    "meta" : {
+      "urn" : "urn:au-cds:error:cds-all:Field/InvalidPage"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>451</con:status>
+      <con:params/>
+      <con:description>The request was well formed but was unable to be shared due to legal reasons</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:dio:error:cds-all:Resource/LegalBlock",
+    "title" : "Legal Block",
+    "detail" : "Request blocked for Legal Reasons",
+    "meta" : {
+      "urn" : "urn:dio:error:cds-all:Resource/LegalBlock"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:request name="Request 1" id="d7cb8dd5-e69b-455b-8c2d-d0f0d48e2450" mediaType="application/json">
+      <con:settings/>
+      <con:endpoint>https://ods.data.holder/dio-au/v0</con:endpoint>
+      <con:parameters/>
+      <con:environmentSpec>
+        <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">
+          <con:authProfile>CDR</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+  </con:method>
+</con:resource>

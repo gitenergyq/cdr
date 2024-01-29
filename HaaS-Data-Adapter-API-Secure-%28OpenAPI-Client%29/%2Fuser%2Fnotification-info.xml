@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:con="http://eviware.com/soapui/config" name="/user/notification-info" path="/user/notification-info" id="a642281e-3475-4cbd-9d6c-ee3d1f185f81">
+  <con:settings id="3641f1e7-d976-449c-9e68-dd8d74cabb5d">
+    <con:setting id="a642281e-3475-4cbd-9d6c-ee3d1f185f81fileName">%2Fuser%2Fnotification-info</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="getUserNotificationInfo" id="febc772d-9b7c-493c-85f8-0e77d0dae1d4" method="POST">
+    <con:description>Takes a userId and returns back the name and email that should be used when sending email notifications to that user.
+There are places where HaaS needs to obtain the name &amp; email of a `userId` but we don't have a `principalId` present.</con:description>
+    <con:settings/>
+    <con:parameters>
+      <con:parameter>
+        <con:name>x-fapi-interaction-id</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>An [RFC4122](https://tools.ietf.org/html/rfc4122) UUID used as a correlation id. If provided, the data holder must play back this value in the x-fapi-interaction-id response header. If not provided a [RFC4122](https://tools.ietf.org/html/rfc4122) UUID value is required to be provided in the response header to track the interaction.</con:description>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>x-haas-realm-name</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The name of the realm that data is being requested for. Necessary for holders that have multiple brands that should not share data between them.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-haas-performance-tier</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>This indicates which performance tier according to the Data Standards the request originates</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-haas-v</con:name>
+        <con:style>HEADER</con:style>
+      </con:parameter>
+    </con:parameters>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:description>Success</con:description>
+      <con:sampleContent>{
+  "version" : "V0",
+  "name" : "First Last",
+  "email" : "demo@example.com"
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>404</con:status>
+      <con:params/>
+      <con:description>This resource does not exist in the upstream system</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:au-cds:error:cds-all:Resource/Invalid",
+    "title" : "Invalid Resource",
+    "detail" : "The requested resource identifier is permanently unavailable.",
+    "meta" : {
+      "urn" : "urn:au-cds:error:cds-all:Resource/Invalid"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="REQUEST">
+      <con:mediaType>application/json</con:mediaType>
+      <con:params/>
+      <con:sampleContent>{
+  "version" : "V0",
+  "userId" : "b5d1da97-a796-4e8f-9221-cc3cffafb567"
+}</con:sampleContent>
+    </con:representation>
+    <con:request name="Request 1" id="73300b81-59a4-4924-b266-d9334e9dce24" mediaType="application/json">
+      <con:settings/>
+      <con:endpoint>https://ods.data.holder/dio-au/v0</con:endpoint>
+      <con:request>{\r
+  "version" : "V0",\r
+  "userId" : "b5d1da97-a796-4e8f-9221-cc3cffafb567"\r
+}</con:request>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:parameters/>
+      <con:environmentSpec>
+        <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">
+          <con:authProfile>CDR</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+  </con:method>
+</con:resource>

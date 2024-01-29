@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:con="http://eviware.com/soapui/config" name="/login/user" path="/login/user" id="83861fac-8b95-4e23-9895-ae05e293829b">
+  <con:settings id="ddf6cb71-572a-44f1-903c-7ef8e16774f7">
+    <con:setting id="83861fac-8b95-4e23-9895-ae05e293829bfileName">%2Flogin%2Fuser</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="getUser" id="5aab26a6-5faa-4028-81ef-818f5d5b24cf" method="POST">
+    <con:description>Essentially a simplified GetCustomer call. To be used as a replacement for GetCustomer in the Consent Flow.
+Also used in the Consent Management Dashboard as a way of knowing about the Power of Attorney situations  that may exist.</con:description>
+    <con:settings/>
+    <con:parameters>
+      <con:parameter>
+        <con:name>x-fapi-interaction-id</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>An [RFC4122](https://tools.ietf.org/html/rfc4122) UUID used as a correlation id. If provided, the data holder must play back this value in the x-fapi-interaction-id response header. If not provided a [RFC4122](https://tools.ietf.org/html/rfc4122) UUID value is required to be provided in the response header to track the interaction.</con:description>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>x-haas-realm-name</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The name of the realm that data is being requested for. Necessary for holders that have multiple brands that should not share data between them.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-haas-v</con:name>
+        <con:style>HEADER</con:style>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-haas-performance-tier</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>This indicates which performance tier according to the Data Standards the request originates</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-fapi-auth-date</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The time when the customer last logged in to the Data Recipient Software Product as described in [FAPI-R-Draft](https://openid.net/specs/openid-financial-api-part-1-ID2.html). Required for all resource calls (customer present and unattended) if the customer is currently logged. Otherwise optional where the customer has not logged in. Not to be included for unauthenticated calls.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-fapi-customer-ip-address</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The customer's original IP address if the customer is currently logged in to the Data Recipient Software Product.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-cds-client-headers</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The customer's original standard http headers [Base64](https://consumerdatastandardsaustralia.github.io/standards/#common-field-types) encoded, including the original User Agent header, if the customer is currently logged in to the Data Recipient Software Product. Mandatory for customer present calls. Not required for unattended or unauthenticated calls.</con:description>
+      </con:parameter>
+    </con:parameters>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:description>Success</con:description>
+      <con:sampleContent>{
+  "version" : "V0",
+  "principalName" : "Doe Pty Ltd",
+  "customerUType" : "person",
+  "name" : "First Last",
+  "lastName" : "Last",
+  "firstName" : "First",
+  "updatedAt" : "2018-11-13T20:20:39Z",
+  "role" : "Chief Financial Officer",
+  "vulnerable" : false,
+  "authorityToOperate" : [ {
+    "principalId" : "ad383b27-22d5-4da8-beb8-2fcf65029f0d",
+    "userId" : "4e9cfa0b-5790-41de-8fbe-7e4caec817af",
+    "type" : "POWER_OF_ATTORNEY"
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>400</con:status>
+      <con:params/>
+      <con:description>Request has malformed, missing or non-compliant JSON body or URL parameters.</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:au-cds:error:cds-all:Field/Invalid",
+    "title" : "Invalid Field",
+    "detail" : "Invalid format supplied for fieldName",
+    "meta" : {
+      "urn" : "urn:au-cds:error:cds-all:Field/Invalid"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>404</con:status>
+      <con:params/>
+      <con:description>This resource does not exist in the upstream system</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:au-cds:error:cds-all:Resource/Invalid",
+    "title" : "Invalid Resource",
+    "detail" : "The requested resource identifier is permanently unavailable.",
+    "meta" : {
+      "urn" : "urn:au-cds:error:cds-all:Resource/Invalid"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>422</con:status>
+      <con:params/>
+      <con:description>The request was well formed but was unable to be processed due to business logic specific to the request</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:au-cds:error:cds-all:GeneralError/Expected",
+    "title" : "Expected Error Encountered",
+    "detail" : "General Expected error occurred",
+    "meta" : {
+      "urn" : "urn:au-cds:error:cds-all:GeneralError/Expected"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>451</con:status>
+      <con:params/>
+      <con:description>The request was well formed but was unable to be shared due to legal reasons</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:dio:error:cds-all:Resource/LegalBlock",
+    "title" : "Legal Block",
+    "detail" : "Request blocked for Legal Reasons",
+    "meta" : {
+      "urn" : "urn:dio:error:cds-all:Resource/LegalBlock"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="REQUEST">
+      <con:mediaType>application/json</con:mediaType>
+      <con:params/>
+      <con:sampleContent>{
+  "version" : "V0",
+  "userId" : "b5d1da97-a796-4e8f-9221-cc3cffafb567",
+  "principalId" : "552375cb-9c00-4fde-a0a0-592904a55355"
+}</con:sampleContent>
+    </con:representation>
+    <con:request name="Request 1" id="2b732a97-b2dd-45f2-9672-b47315085fe5" mediaType="application/json" postQueryString="false">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+      </con:settings>
+      <con:endpoint>https://ods.data.holder/dio-au/v0</con:endpoint>
+      <con:request>{\r
+  "version" : "V0",\r
+  "userId" : "b5d1da97-a796-4e8f-9221-cc3cffafb567",\r
+  "principalId" : "552375cb-9c00-4fde-a0a0-592904a55355"\r
+}</con:request>
+      <con:originalUri>https://qu6ri9ljd1.execute-api.ap-southeast-2.amazonaws.com/v1/login/user</con:originalUri>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters>
+        <con:entry key="x-haas-realm-name" value="EQL"/>
+      </con:parameters>
+      <con:environmentSpec>
+        <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">
+          <con:authProfile>CDR</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+  </con:method>
+</con:resource>

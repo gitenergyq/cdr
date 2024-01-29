@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:con="http://eviware.com/soapui/config" name="/customer/{principalId}" path="/customer/{principalId}" id="4b6140c5-291e-4a26-aaba-a95c0c07abe1">
+  <con:settings id="ec353c25-038f-441b-8827-d98f8a80652d">
+    <con:setting id="4b6140c5-291e-4a26-aaba-a95c0c07abe1fileName">%2Fcustomer%2F%7BprincipalId%7D</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="getCustomer" id="6eedd514-73cb-4906-8069-54440edc00bf" method="GET">
+    <con:description>Retrieve a specific customer based on identifier</con:description>
+    <con:settings/>
+    <con:parameters>
+      <con:parameter required="true">
+        <con:name>principalId</con:name>
+        <con:style>TEMPLATE</con:style>
+        <con:description>Represents the Principal being accessed</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>userId</con:name>
+        <con:style>QUERY</con:style>
+        <con:description>The optional user to apply to the adapter call. This allows filtering of resources to only those accessible by the user rather than the whole set of resources available to the principal</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-fapi-interaction-id</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>An [RFC4122](https://tools.ietf.org/html/rfc4122) UUID used as a correlation id. If provided, the data holder must play back this value in the x-fapi-interaction-id response header. If not provided a [RFC4122](https://tools.ietf.org/html/rfc4122) UUID value is required to be provided in the response header to track the interaction.</con:description>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>x-haas-realm-name</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The name of the realm that data is being requested for. Necessary for holders that have multiple brands that should not share data between them.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-haas-v</con:name>
+        <con:style>HEADER</con:style>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-haas-performance-tier</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>This indicates which performance tier according to the Data Standards the request originates</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-fapi-auth-date</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The time when the customer last logged in to the Data Recipient Software Product as described in [FAPI-R-Draft](https://openid.net/specs/openid-financial-api-part-1-ID2.html). Required for all resource calls (customer present and unattended) if the customer is currently logged. Otherwise optional where the customer has not logged in. Not to be included for unauthenticated calls.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-fapi-customer-ip-address</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The customer's original IP address if the customer is currently logged in to the Data Recipient Software Product.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-cds-client-headers</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The customer's original standard http headers [Base64](https://consumerdatastandardsaustralia.github.io/standards/#common-field-types) encoded, including the original User Agent header, if the customer is currently logged in to the Data Recipient Software Product. Mandatory for customer present calls. Not required for unattended or unauthenticated calls.</con:description>
+      </con:parameter>
+    </con:parameters>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:description>Success</con:description>
+      <con:sampleContent>{
+  "version" : "V0",
+  "data" : {
+    "id" : "164063905f23916d5ebe671b7f89ebaa083b7e9125b2d3ae6be2a10e3cb3ba22",
+    "customerType" : "PERSON",
+    "organisation" : {
+      "name" : "Acme Pty Ltd",
+      "tradingName" : "string",
+      "abn" : "string",
+      "acn" : "string",
+      "agentFirstName" : "string",
+      "agentLastName" : "Doe",
+      "agentRole" : "Unspecified",
+      "establishmentDate" : "2015-07-20",
+      "industryCode" : "string",
+      "acncRegistered" : true,
+      "lastUpdateTime" : "2015-07-20T15:49:04-07:00",
+      "legalName" : "string",
+      "organisationType" : "COMPANY",
+      "registeredCountry" : "AUS",
+      "physicalAddresses" : [ {
+        "addressUType" : "simple",
+        "paf" : {
+          "buildingName1" : "CAPITAL HOUSE",
+          "buildingName2" : "WE WORK",
+          "dpid" : "34567890",
+          "flatUnitNumber" : "2A",
+          "flatUnitType" : "U",
+          "floorLevelNumber" : "2",
+          "floorLevelType" : "FL",
+          "localityName" : "RICHMOND",
+          "lotNumber" : "20",
+          "postalDeliveryNumber" : 2,
+          "postalDeliveryNumberPrefix" : "N",
+          "postalDeliveryNumberSuffix" : "A",
+          "postalDeliveryType" : "PO BOX",
+          "postcode" : "3024",
+          "state" : "NSW",
+          "streetName" : "SMITH",
+          "streetSuffix" : "W",
+          "streetType" : "ST",
+          "thoroughfareNumber1" : 23,
+          "thoroughfareNumber1Suffix" : "A",
+          "thoroughfareNumber2" : 25,
+          "thoroughfareNumber2Suffix" : "B"
+        },
+        "simple" : {
+          "addressLine1" : "55 McDonald Avenue",
+          "addressLine2" : "string",
+          "addressLine3" : "string",
+          "city" : "Maryville",
+          "country" : "AUS",
+          "mailingName" : "string",
+          "postcode" : "2293",
+          "state" : "NSW"
+        },
+        "purpose" : "MAIL"
+      } ]
+    },
+    "person" : {
+      "firstName" : "string",
+      "lastName" : "Doe",
+      "lastUpdateTime" : "2015-07-20T15:49:04-07:00",
+      "middleNames" : [ "string" ],
+      "occupationCode" : "string",
+      "prefix" : "string",
+      "suffix" : "string",
+      "emailAddresses" : [ {
+        "address" : "john@doe.com",
+        "isPreferred" : true,
+        "purpose" : "HOME"
+      } ],
+      "phoneNumbers" : [ {
+        "areaCode" : "string",
+        "countryCode" : "string",
+        "extension" : "string",
+        "fullNumber" : "+61439123123",
+        "isPreferred" : true,
+        "number" : "0439123123",
+        "purpose" : "MOBILE"
+      } ],
+      "physicalAddresses" : [ {
+        "addressUType" : "simple",
+        "paf" : {
+          "buildingName1" : "CAPITAL HOUSE",
+          "buildingName2" : "WE WORK",
+          "dpid" : "34567890",
+          "flatUnitNumber" : "2A",
+          "flatUnitType" : "U",
+          "floorLevelNumber" : "2",
+          "floorLevelType" : "FL",
+          "localityName" : "RICHMOND",
+          "lotNumber" : "20",
+          "postalDeliveryNumber" : 2,
+          "postalDeliveryNumberPrefix" : "N",
+          "postalDeliveryNumberSuffix" : "A",
+          "postalDeliveryType" : "PO BOX",
+          "postcode" : "3024",
+          "state" : "NSW",
+          "streetName" : "SMITH",
+          "streetSuffix" : "W",
+          "streetType" : "ST",
+          "thoroughfareNumber1" : 23,
+          "thoroughfareNumber1Suffix" : "A",
+          "thoroughfareNumber2" : 25,
+          "thoroughfareNumber2Suffix" : "B"
+        },
+        "simple" : {
+          "addressLine1" : "55 McDonald Avenue",
+          "addressLine2" : "string",
+          "addressLine3" : "string",
+          "city" : "Maryville",
+          "country" : "AUS",
+          "mailingName" : "string",
+          "postcode" : "2293",
+          "state" : "NSW"
+        },
+        "purpose" : "MAIL"
+      } ]
+    }
+  }
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>404</con:status>
+      <con:params/>
+      <con:description>This resource does not exist in the upstream system</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:au-cds:error:cds-all:Resource/Invalid",
+    "title" : "Invalid Resource",
+    "detail" : "The requested resource identifier is permanently unavailable.",
+    "meta" : {
+      "urn" : "urn:au-cds:error:cds-all:Resource/Invalid"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>451</con:status>
+      <con:params/>
+      <con:description>The request was well formed but was unable to be shared due to legal reasons</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:dio:error:cds-all:Resource/LegalBlock",
+    "title" : "Legal Block",
+    "detail" : "Request blocked for Legal Reasons",
+    "meta" : {
+      "urn" : "urn:dio:error:cds-all:Resource/LegalBlock"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:request name="Request 1" id="c6da19da-4131-4387-b8e4-1e11b0cc2426" mediaType="application/json">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+      </con:settings>
+      <con:endpoint>https://ods.data.holder/dio-au/v0</con:endpoint>
+      <con:request/>
+      <con:originalUri>https://qu6ri9ljd1.execute-api.ap-southeast-2.amazonaws.com/v1/customer/</con:originalUri>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters>
+        <con:entry key="x-haas-realm-name" value="EQL"/>
+      </con:parameters>
+      <con:environmentSpec>
+        <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">
+          <con:authProfile>CDR</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+  </con:method>
+</con:resource>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:con="http://eviware.com/soapui/config" name="/energy/{principalId}/invoice" path="/energy/{principalId}/invoice" id="3d69e04e-4497-46c2-a9ed-14cd00f8004e">
+  <con:settings id="72e047b7-37d0-4251-a3c8-90df9f803be4">
+    <con:setting id="3d69e04e-4497-46c2-a9ed-14cd00f8004efileName">%2Fenergy%2F%7BprincipalId%7D%2Finvoice</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="listEnergyInvoices" id="2f104e26-08d2-45f5-9cdc-8ffd69c9b514" method="GET">
+    <con:description>Retrieve a list of invoices for one or more account identifiers</con:description>
+    <con:settings/>
+    <con:parameters>
+      <con:parameter required="true">
+        <con:name>principalId</con:name>
+        <con:style>TEMPLATE</con:style>
+        <con:description>Represents the Principal being accessed</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>userId</con:name>
+        <con:style>QUERY</con:style>
+        <con:description>The optional user to apply to the adapter call. This allows filtering of resources to only those accessible by the user rather than the whole set of resources available to the principal</con:description>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>accountIds</con:name>
+        <con:style>QUERY</con:style>
+        <con:description>Filter results based on a set of account identifiers</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>oldest-date</con:name>
+        <con:style>QUERY</con:style>
+        <con:description>Constrain the request to records with issue date at or after this date. If absent defaults to newest-date minus 24 months. Format is aligned to DateString common type</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>newest-date</con:name>
+        <con:style>QUERY</con:style>
+        <con:description>Constrain the request to records with issue date at or before this date. If absent defaults to current date. Format is aligned to DateString common type</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>page</con:name>
+        <con:value>1</con:value>
+        <con:style>QUERY</con:style>
+        <con:default>1</con:default>
+        <con:description>Page of results to request (standard pagination)</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>page-size</con:name>
+        <con:value>25</con:value>
+        <con:style>QUERY</con:style>
+        <con:default>25</con:default>
+        <con:description>Page size to request. Default is 25 (standard pagination)</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-fapi-interaction-id</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>An [RFC4122](https://tools.ietf.org/html/rfc4122) UUID used as a correlation id. If provided, the data holder must play back this value in the x-fapi-interaction-id response header. If not provided a [RFC4122](https://tools.ietf.org/html/rfc4122) UUID value is required to be provided in the response header to track the interaction.</con:description>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>x-haas-realm-name</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The name of the realm that data is being requested for. Necessary for holders that have multiple brands that should not share data between them.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-haas-v</con:name>
+        <con:style>HEADER</con:style>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-haas-performance-tier</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>This indicates which performance tier according to the Data Standards the request originates</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-fapi-auth-date</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The time when the customer last logged in to the Data Recipient Software Product as described in [FAPI-R-Draft](https://openid.net/specs/openid-financial-api-part-1-ID2.html). Required for all resource calls (customer present and unattended) if the customer is currently logged. Otherwise optional where the customer has not logged in. Not to be included for unauthenticated calls.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-fapi-customer-ip-address</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The customer's original IP address if the customer is currently logged in to the Data Recipient Software Product.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-cds-client-headers</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The customer's original standard http headers [Base64](https://consumerdatastandardsaustralia.github.io/standards/#common-field-types) encoded, including the original User Agent header, if the customer is currently logged in to the Data Recipient Software Product. Mandatory for customer present calls. Not required for unattended or unauthenticated calls.</con:description>
+      </con:parameter>
+    </con:parameters>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:description>Success</con:description>
+      <con:sampleContent>{
+  "version" : "V0",
+  "data" : {
+    "invoices" : [ {
+      "accountId" : "jdnmwucgrchzngrqieryhiovpvzknokkwsediggdlnxgxizegvwpwfflgavkrbay",
+      "invoiceNumber" : "109818233",
+      "issueDate" : "2022-08-01",
+      "dueDate" : "2022-09-01",
+      "period" : {
+        "startDate" : "2022-01-01",
+        "endDate" : "2022-06-30"
+      },
+      "invoiceAmount" : "22.00",
+      "gstAmount" : "20.00",
+      "payOnTimeDiscount" : {
+        "discountAmount" : "5.00",
+        "gstAmount" : "0.50",
+        "date" : "2022-07-15"
+      },
+      "balanceAtIssue" : "10.00",
+      "servicePoints" : [ "aa719cefa99b27d2a86482c0e51460910e4336f24fa42b5c60dc72dcda86b3fa" ],
+      "gas" : {
+        "totalUsageCharges" : "10.00",
+        "totalGenerationCredits" : "7.00",
+        "totalOnceOffCharges" : "10.00",
+        "totalOnceOffDiscounts" : "10.00",
+        "otherCharges" : [ {
+          "type" : "OTHER",
+          "amount" : "5.00",
+          "description" : "Other Usage"
+        } ],
+        "totalGst" : "1.36"
+      },
+      "electricity" : {
+        "totalUsageCharges" : "10.00",
+        "totalGenerationCredits" : "7.00",
+        "totalOnceOffCharges" : "10.00",
+        "totalOnceOffDiscounts" : "10.00",
+        "otherCharges" : [ {
+          "type" : "OTHER",
+          "amount" : "5.00",
+          "description" : "Other Usage"
+        } ],
+        "totalGst" : "1.36"
+      },
+      "accountCharges" : {
+        "totalCharges" : "15.00",
+        "totalDiscounts" : "10.00",
+        "totalGst" : "1.36"
+      },
+      "paymentStatus" : "NOT_PAID"
+    } ]
+  },
+  "meta" : {
+    "totalPages" : 1,
+    "totalRecords" : 20
+  }
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>400</con:status>
+      <con:params/>
+      <con:description>Bad Request</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:au-cds:error:cds-all:Field/Missing",
+    "title" : "Missing Required Field",
+    "detail" : "fieldName missing",
+    "meta" : {
+      "urn" : "urn:au-cds:error:cds-all:Field/Missing"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>404</con:status>
+      <con:params/>
+      <con:description>This resource does not exist in the upstream system</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:au-cds:error:cds-all:Resource/Invalid",
+    "title" : "Invalid Resource",
+    "detail" : "The requested resource identifier is permanently unavailable.",
+    "meta" : {
+      "urn" : "urn:au-cds:error:cds-all:Resource/Invalid"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>422</con:status>
+      <con:params/>
+      <con:description>Unprocessable Entity Error</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:au-cds:error:cds-all:Field/InvalidPage",
+    "title" : "Invalid Page",
+    "detail" : "Invalid Page",
+    "meta" : {
+      "urn" : "urn:au-cds:error:cds-all:Field/InvalidPage"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>451</con:status>
+      <con:params/>
+      <con:description>The request was well formed but was unable to be shared due to legal reasons</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:dio:error:cds-all:Resource/LegalBlock",
+    "title" : "Legal Block",
+    "detail" : "Request blocked for Legal Reasons",
+    "meta" : {
+      "urn" : "urn:dio:error:cds-all:Resource/LegalBlock"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:request name="Request 1" id="98817031-c328-44f2-b1d5-294fe17b9281" mediaType="application/json">
+      <con:settings/>
+      <con:endpoint>https://ods.data.holder/dio-au/v0</con:endpoint>
+      <con:parameters/>
+      <con:environmentSpec>
+        <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">
+          <con:authProfile>CDR</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+  </con:method>
+</con:resource>

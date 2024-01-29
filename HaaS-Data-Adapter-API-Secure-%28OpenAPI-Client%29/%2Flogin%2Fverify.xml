@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:con="http://eviware.com/soapui/config" name="/login/verify" path="/login/verify" id="aaa26877-36b8-4ae7-91ea-bb4266a7ee93">
+  <con:settings id="5e789dc2-0dbb-4139-85ae-2d894b76ce59">
+    <con:setting id="aaa26877-36b8-4ae7-91ea-bb4266a7ee93fileName">%2Flogin%2Fverify</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="verifyLogin" id="7b761af1-e7c5-4bf3-9c61-06a563528a43" method="POST">
+    <con:description>Using a supplied request identifier and a supplied OTP verify the login and return a set of customer identifiers it is now validated for</con:description>
+    <con:settings/>
+    <con:parameters>
+      <con:parameter>
+        <con:name>x-fapi-interaction-id</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>An [RFC4122](https://tools.ietf.org/html/rfc4122) UUID used as a correlation id. If provided, the data holder must play back this value in the x-fapi-interaction-id response header. If not provided a [RFC4122](https://tools.ietf.org/html/rfc4122) UUID value is required to be provided in the response header to track the interaction.</con:description>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>x-haas-realm-name</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The name of the realm that data is being requested for. Necessary for holders that have multiple brands that should not share data between them.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-haas-v</con:name>
+        <con:style>HEADER</con:style>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-haas-performance-tier</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>This indicates which performance tier according to the Data Standards the request originates</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-fapi-customer-ip-address</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The customer's original IP address if the customer is currently logged in to the Data Recipient Software Product.</con:description>
+      </con:parameter>
+      <con:parameter>
+        <con:name>x-cds-client-headers</con:name>
+        <con:style>HEADER</con:style>
+        <con:description>The customer's original standard http headers [Base64](https://consumerdatastandardsaustralia.github.io/standards/#common-field-types) encoded, including the original User Agent header, if the customer is currently logged in to the Data Recipient Software Product. Mandatory for customer present calls. Not required for unattended or unauthenticated calls.</con:description>
+      </con:parameter>
+    </con:parameters>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:description>Success</con:description>
+      <con:sampleContent>{
+  "version" : "V0",
+  "principalIds" : [ "552375cb-9c00-4fde-a0a0-592904a55355" ],
+  "userId" : "b5d1da97-a796-4e8f-9221-cc3cffafb567"
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>400</con:status>
+      <con:params/>
+      <con:description>Request has malformed, missing or non-compliant JSON body or URL parameters.</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:au-cds:error:cds-all:Field/Invalid",
+    "title" : "Invalid Field",
+    "detail" : "Invalid format supplied for fieldName",
+    "meta" : {
+      "urn" : "urn:au-cds:error:cds-all:Field/Invalid"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>422</con:status>
+      <con:params/>
+      <con:description>The request was well formed but was unable to be processed due to business logic specific to the request.</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:dio:error:dio-all:Login/InvalidOTP",
+    "title" : "Invalid Request ID and OTP Combination specified",
+    "detail" : "The Request Identifier or OTP specified was invalid",
+    "meta" : {
+      "urn" : "urn:dio:error:dio-all:Login/InvalidOTP"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>451</con:status>
+      <con:params/>
+      <con:description>The request was well formed but was unable to be shared due to legal reasons</con:description>
+      <con:sampleContent>{
+  "errors" : [ {
+    "code" : "urn:dio:error:cds-all:Resource/LegalBlock",
+    "title" : "Legal Block",
+    "detail" : "Request blocked for Legal Reasons",
+    "meta" : {
+      "urn" : "urn:dio:error:cds-all:Resource/LegalBlock"
+    }
+  } ]
+}</con:sampleContent>
+    </con:representation>
+    <con:representation type="REQUEST">
+      <con:mediaType>application/json</con:mediaType>
+      <con:params/>
+      <con:sampleContent>{
+  "version" : "V0",
+  "requestId" : "e5468c93-2dfc-4a27-b156-009a1067f2fb",
+  "otpValue" : "123455"
+}</con:sampleContent>
+    </con:representation>
+    <con:request name="Request 1" id="7b1cb3ee-752c-4b80-b1bf-89ad51bebdd2" mediaType="application/json">
+      <con:settings/>
+      <con:endpoint>https://ods.data.holder/dio-au/v0</con:endpoint>
+      <con:request>{\r
+  "version" : "V0",\r
+  "requestId" : "e5468c93-2dfc-4a27-b156-009a1067f2fb",\r
+  "otpValue" : "123455"\r
+}</con:request>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:parameters/>
+      <con:environmentSpec>
+        <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">
+          <con:authProfile>CDR</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+  </con:method>
+</con:resource>

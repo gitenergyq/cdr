@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project xmlns:con="http://eviware.com/soapui/config" id="d36b1476-7e99-47e5-ae40-89e7370db2e3" created="3.50.0" activeEnvironment="cdrtest" encryptionMode="Not encrypted" name="CDR" resourceRoot="" projectVersion="" compositeProjectFormat="1.3" updated="3.50.0">
+  <con:settings>
+    <con:setting id="d36b1476-7e99-47e5-ae40-89e7370db2e3fileName">CDR-readyapi-project</con:setting>
+  </con:settings>
+  <con:properties>
+    <con:property>
+      <con:name>Grant Type</con:name>
+    </con:property>
+    <con:property>
+      <con:name>Scope</con:name>
+    </con:property>
+    <con:property>
+      <con:name>token url</con:name>
+    </con:property>
+    <con:property>
+      <con:name>api_key</con:name>
+    </con:property>
+    <con:property>
+      <con:name>gateway_url</con:name>
+    </con:property>
+    <con:property>
+      <con:name>client_id</con:name>
+    </con:property>
+    <con:property>
+      <con:name>client_secret</con:name>
+    </con:property>
+  </con:properties>
+  <con:wssContainer/>
+  <con:databaseConnectionContainer/>
+  <con:jmsConnectionContainer/>
+  <con:oAuth2ProfileContainer>
+    <con:oAuth2Profile>
+      <con:name>TokenBasedAuth CLIENT CRED</con:name>
+      <con:type>OAuth 2.0</con:type>
+      <con:accessTokenURI>https://adapter.holder/endpoint/token</con:accessTokenURI>
+      <con:accessTokenPosition>HEADER</con:accessTokenPosition>
+      <con:oAuth2Flow>CLIENT_CREDENTIALS_GRANT</con:oAuth2Flow>
+      <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
+      <con:scope>biza:haas.adapter:read</con:scope>
+      <con:jwtConfiguration/>
+      <con:responseType>id_token</con:responseType>
+    </con:oAuth2Profile>
+    <con:oAuth2Profile>
+      <con:name>CDR</con:name>
+      <con:type>OAuth 2.0</con:type>
+      <con:authorizationURI>https://auth.test.cdr.energyqonline.com.au/oauth2/token</con:authorizationURI>
+      <con:accessTokenURI>https://auth.test.cdr.energyqonline.com.au/oauth2/token</con:accessTokenURI>
+      <con:accessToken>eyJraWQiOiJjdlhnUzN2cmZLcDNBYUg3N3J4YkozRkVBR1dZMW9MTzFnWlJ4Vms4bElBPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzazh2cDJobzlwZnVpaGZrbDM1MzU0ZW0zOCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiY2RyYXBwLXJlc291cmNlLXNlcnZlclwvcmVhZCIsImF1dGhfdGltZSI6MTcwNjUwODM4NCwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmFwLXNvdXRoZWFzdC0yLmFtYXpvbmF3cy5jb21cL2FwLXNvdXRoZWFzdC0yXzNMTk5aQ3Z6OCIsImV4cCI6MTcwNjUwODk4NCwiaWF0IjoxNzA2NTA4Mzg0LCJ2ZXJzaW9uIjoyLCJqdGkiOiI1NWMxYTFkNy1iZjNjLTRhZDktYTc2My1lZmMwNjMwMWUwMmEiLCJjbGllbnRfaWQiOiIzazh2cDJobzlwZnVpaGZrbDM1MzU0ZW0zOCJ9.nZOkCkqBUQ3MdzHz8KjvE0tWXcXpwPP6OVQcSMCrwIlH_uef2mbBOhxQGCUKkKW9jEyZzs19ObtLGBrhrsIHp9-j-HhHjaTDip64JTok2bBIKLnoD07JCwev7LDUjnPz-KqkpL6kRwyj4VbIUS9hef4wjlbEy-GHtRZ4YmP3lw1hiL_5qRTDvhnY_-xPJkJ7y76mcmW3qaZLCiwmZlOMBqP-M4qYgUoiSph-diNW9MaiCsomjqeDGJUPxACxTtXjgSXgt4kXnKtcuRS0IbZK4FQwAIV2lBf4pYhBRVg-GoIJNTL5AVoTlzdBTvpnkTEzOBZv0dMxI0gwML3m7dbv8A</con:accessToken>
+      <con:accessTokenPosition>HEADER</con:accessTokenPosition>
+      <con:accessTokenStatus>RETRIEVED_FROM_SERVER</con:accessTokenStatus>
+      <con:accessTokenStartingStatus>RETRIEVED_FROM_SERVER</con:accessTokenStartingStatus>
+      <con:accessTokenIssuedTime>1706508384</con:accessTokenIssuedTime>
+      <con:clientID>3k8vp2ho9pfuihfkl35354em38</con:clientID>
+      <con:clientSecret>182bnaobg3regs3htjcfq07akl3pv2n1b2u6pfrjsg8q21q3a7v8</con:clientSecret>
+      <con:oAuth2Flow>CLIENT_CREDENTIALS_GRANT</con:oAuth2Flow>
+      <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
+      <con:accessTokenExpirationTime>600</con:accessTokenExpirationTime>
+      <con:jwtConfiguration/>
+      <con:responseType>id_token</con:responseType>
+    </con:oAuth2Profile>
+  </con:oAuth2ProfileContainer>
+  <con:oAuth1ProfileContainer/>
+  <con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest">
+    <con:script>// Sample event script to add custom HTTP header to all outgoing REST, SOAP and HTTP(S) calls
+// This code is often used for adding custom authentication to ReadyAPI functional tests
+
+// If hardcoding the token, uncomment and change line 5
+// token = '4567'
+
+// If your token is parameterized in Project level custom property, uncomment line 8
+// token = request.parent.testCase.testSuite.project.getProperty('auth_token').getValue()
+
+// To modify all outgoing calls, remove comments from lines 11 to 16
+// headers = request.requestHeaders
+// if (headers.containsKey('auth_token2') == false) {
+//   headers.put('auth_token2', token)
+//   request.requestHeaders = headers
+// }</con:script>
+  </con:eventHandlers>
+  <con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep">
+    <con:script>// Save all test step results into files
+// Change the directory path in line 5 to a location where you want to store details
+// then uncomment lines 5 to 10
+
+// filePath = 'C:\\tempOutputDirectory\\'
+// fos = new java.io.FileOutputStream(filePath + testStepResult.testStep.label + '.txt', true)
+// pw = new java.io.PrintWriter(fos)
+// testStepResult.writeTo(pw)
+// pw.close()
+// fos.close()</con:script>
+  </con:eventHandlers>
+  <con:environment id="ccd694ea-bddb-4933-ad1f-1421ca398183" name="cdrtest" index="0">
+    <con:service type="REST" name="HaaS Data Adapter API Secure (OpenAPI Client)">
+      <con:endpoint authProfile="CDR" proxyHost="" proxyPort="" proxyUsername="" proxyPassword="" areGlobalProxySettingsIgnored="false">https://qu6ri9ljd1.execute-api.ap-southeast-2.amazonaws.com/v1</con:endpoint>
+    </con:service>
+    <con:property>
+      <con:name>Grant Type</con:name>
+      <con:value>Client Credentials</con:value>
+    </con:property>
+    <con:property>
+      <con:name>Scope</con:name>
+      <con:value>cdrapp-resource-server/read</con:value>
+    </con:property>
+    <con:property>
+      <con:name>token url</con:name>
+      <con:value>https://auth.test.cdr.energyqonline.com.au/oauth2/token</con:value>
+    </con:property>
+    <con:property>
+      <con:name>api_key</con:name>
+      <con:value>MfLT7fZd8i3EKFQPIzSnu2i4UjrIhRnp1PnLzKlr</con:value>
+    </con:property>
+    <con:property>
+      <con:name>gateway_url</con:name>
+      <con:value>https://qu6ri9ljd1.execute-api.ap-southeast-2.amazonaws.com/v1</con:value>
+    </con:property>
+    <con:property>
+      <con:name>client_id</con:name>
+      <con:value>3k8vp2ho9pfuihfkl35354em38</con:value>
+    </con:property>
+    <con:property>
+      <con:name>client_secret</con:name>
+      <con:value>182bnaobg3regs3htjcfq07akl3pv2n1b2u6pfrjsg8q21q3a7v8</con:value>
+    </con:property>
+    <con:databaseConnectionContainer/>
+    <con:jmsConnectionContainer/>
+  </con:environment>
+  <con:authRepository>
+    <con:oAuth20AuthEntry>
+      <con:name>TokenBasedAuth CLIENT CRED</con:name>
+      <con:type>OAuth 2.0</con:type>
+      <con:accessTokenURI>https://adapter.holder/endpoint/token</con:accessTokenURI>
+      <con:accessTokenPosition>HEADER</con:accessTokenPosition>
+      <con:oAuth2Flow>CLIENT_CREDENTIALS_GRANT</con:oAuth2Flow>
+      <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
+      <con:scope>biza:haas.adapter:read</con:scope>
+      <con:jwtConfiguration/>
+      <con:responseType>id_token</con:responseType>
+    </con:oAuth20AuthEntry>
+    <con:oAuth20AuthEntry>
+      <con:name>CDR</con:name>
+      <con:type>OAuth 2.0</con:type>
+      <con:authorizationURI>https://auth.test.cdr.energyqonline.com.au/oauth2/token</con:authorizationURI>
+      <con:accessTokenURI>https://auth.test.cdr.energyqonline.com.au/oauth2/token</con:accessTokenURI>
+      <con:accessToken>eyJraWQiOiJjdlhnUzN2cmZLcDNBYUg3N3J4YkozRkVBR1dZMW9MTzFnWlJ4Vms4bElBPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzazh2cDJobzlwZnVpaGZrbDM1MzU0ZW0zOCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiY2RyYXBwLXJlc291cmNlLXNlcnZlclwvcmVhZCIsImF1dGhfdGltZSI6MTcwNjUwODM4NCwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmFwLXNvdXRoZWFzdC0yLmFtYXpvbmF3cy5jb21cL2FwLXNvdXRoZWFzdC0yXzNMTk5aQ3Z6OCIsImV4cCI6MTcwNjUwODk4NCwiaWF0IjoxNzA2NTA4Mzg0LCJ2ZXJzaW9uIjoyLCJqdGkiOiI1NWMxYTFkNy1iZjNjLTRhZDktYTc2My1lZmMwNjMwMWUwMmEiLCJjbGllbnRfaWQiOiIzazh2cDJobzlwZnVpaGZrbDM1MzU0ZW0zOCJ9.nZOkCkqBUQ3MdzHz8KjvE0tWXcXpwPP6OVQcSMCrwIlH_uef2mbBOhxQGCUKkKW9jEyZzs19ObtLGBrhrsIHp9-j-HhHjaTDip64JTok2bBIKLnoD07JCwev7LDUjnPz-KqkpL6kRwyj4VbIUS9hef4wjlbEy-GHtRZ4YmP3lw1hiL_5qRTDvhnY_-xPJkJ7y76mcmW3qaZLCiwmZlOMBqP-M4qYgUoiSph-diNW9MaiCsomjqeDGJUPxACxTtXjgSXgt4kXnKtcuRS0IbZK4FQwAIV2lBf4pYhBRVg-GoIJNTL5AVoTlzdBTvpnkTEzOBZv0dMxI0gwML3m7dbv8A</con:accessToken>
+      <con:accessTokenPosition>HEADER</con:accessTokenPosition>
+      <con:accessTokenStatus>RETRIEVED_FROM_SERVER</con:accessTokenStatus>
+      <con:accessTokenStartingStatus>RETRIEVED_FROM_SERVER</con:accessTokenStartingStatus>
+      <con:accessTokenIssuedTime>1706508384</con:accessTokenIssuedTime>
+      <con:clientID>3k8vp2ho9pfuihfkl35354em38</con:clientID>
+      <con:clientSecret>182bnaobg3regs3htjcfq07akl3pv2n1b2u6pfrjsg8q21q3a7v8</con:clientSecret>
+      <con:oAuth2Flow>CLIENT_CREDENTIALS_GRANT</con:oAuth2Flow>
+      <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
+      <con:accessTokenExpirationTime>600</con:accessTokenExpirationTime>
+      <con:jwtConfiguration/>
+      <con:responseType>id_token</con:responseType>
+    </con:oAuth20AuthEntry>
+  </con:authRepository>
+  <con:environmentSpec>
+    <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">
+      <con:authProfile>No Authorization</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+  <con:tags/>
+</con:soapui-project>
