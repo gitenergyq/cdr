@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:resource xmlns:con="http://eviware.com/soapui/config" name="/status/closed-principals" path="/status/closed-principals" id="a36d9640-58ca-4b06-87e6-877564a3ea97">
-  <con:settings id="660bc91e-9093-429b-b755-f4f9dceb2107">
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="/status/closed-principals" path="/status/closed-principals" id="a36d9640-58ca-4b06-87e6-877564a3ea97">
+  <con:settings id="e82cbdb4-68c4-47b7-985d-958c7c694825">
     <con:setting id="a36d9640-58ca-4b06-87e6-877564a3ea97fileName">%2Fstatus%2Fclosed-principals</con:setting>
   </con:settings>
   <con:parameters/>
@@ -80,6 +80,10 @@
     <con:request name="Request 1" id="f449ae34-5c3d-48e2-a10a-90e8086c4263" mediaType="application/json">
       <con:settings/>
       <con:endpoint>https://ods.data.holder/dio-au/v0</con:endpoint>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
       <con:parameters/>
       <con:environmentSpec>
         <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">

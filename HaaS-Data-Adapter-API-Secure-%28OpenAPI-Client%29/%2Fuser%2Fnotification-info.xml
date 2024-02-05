@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:resource xmlns:con="http://eviware.com/soapui/config" name="/user/notification-info" path="/user/notification-info" id="a642281e-3475-4cbd-9d6c-ee3d1f185f81">
-  <con:settings id="3641f1e7-d976-449c-9e68-dd8d74cabb5d">
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="/user/notification-info" path="/user/notification-info" id="a642281e-3475-4cbd-9d6c-ee3d1f185f81">
+  <con:settings id="4206be90-52f3-44ef-b7b2-20ed19bf7cb0">
     <con:setting id="a642281e-3475-4cbd-9d6c-ee3d1f185f81fileName">%2Fuser%2Fnotification-info</con:setting>
   </con:settings>
   <con:parameters/>

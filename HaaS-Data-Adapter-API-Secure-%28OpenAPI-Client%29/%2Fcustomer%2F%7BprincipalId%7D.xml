@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:resource xmlns:con="http://eviware.com/soapui/config" name="/customer/{principalId}" path="/customer/{principalId}" id="4b6140c5-291e-4a26-aaba-a95c0c07abe1">
-  <con:settings id="ec353c25-038f-441b-8827-d98f8a80652d">
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="/customer/{principalId}" path="/customer/{principalId}" id="4b6140c5-291e-4a26-aaba-a95c0c07abe1">
+  <con:settings id="412d873c-606d-4162-832b-c10a333f78de">
     <con:setting id="4b6140c5-291e-4a26-aaba-a95c0c07abe1fileName">%2Fcustomer%2F%7BprincipalId%7D</con:setting>
   </con:settings>
   <con:parameters/>
@@ -214,20 +214,13 @@
 }</con:sampleContent>
     </con:representation>
     <con:request name="Request 1" id="c6da19da-4131-4387-b8e4-1e11b0cc2426" mediaType="application/json">
-      <con:settings>
-        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-      </con:settings>
+      <con:settings/>
       <con:endpoint>https://ods.data.holder/dio-au/v0</con:endpoint>
-      <con:request/>
-      <con:originalUri>https://qu6ri9ljd1.execute-api.ap-southeast-2.amazonaws.com/v1/customer/</con:originalUri>
       <con:credentials>
         <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
         <con:authType>No Authorization</con:authType>
       </con:credentials>
-      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-      <con:parameters>
-        <con:entry key="x-haas-realm-name" value="EQL"/>
-      </con:parameters>
+      <con:parameters/>
       <con:environmentSpec>
         <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">
           <con:authProfile>CDR</con:authProfile>

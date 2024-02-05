@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:resource xmlns:con="http://eviware.com/soapui/config" name="/banking/customer/{principalId}/payment" path="/banking/customer/{principalId}/payment" id="008379d6-3e25-4f9f-9347-0eeb72a85e12">
-  <con:settings id="8f8baf18-96d0-4135-aae8-2a4f07b3b1b1">
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="/banking/customer/{principalId}/payment" path="/banking/customer/{principalId}/payment" id="008379d6-3e25-4f9f-9347-0eeb72a85e12">
+  <con:settings id="041b6ff6-54b0-4a87-a44a-96f4ca1a3daf">
     <con:setting id="008379d6-3e25-4f9f-9347-0eeb72a85e12fileName">%2Fbanking%2Fcustomer%2F%7BprincipalId%7D%2Fpayment</con:setting>
   </con:settings>
   <con:parameters/>
@@ -202,6 +202,10 @@
     <con:request name="Request 1" id="88e62a35-0336-4048-8796-532e9e9ebb6c" mediaType="application/json">
       <con:settings/>
       <con:endpoint>https://ods.data.holder/dio-au/v0</con:endpoint>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
       <con:parameters/>
       <con:environmentSpec>
         <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">

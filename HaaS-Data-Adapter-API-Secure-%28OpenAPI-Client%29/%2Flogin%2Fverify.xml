@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:resource xmlns:con="http://eviware.com/soapui/config" name="/login/verify" path="/login/verify" id="aaa26877-36b8-4ae7-91ea-bb4266a7ee93">
-  <con:settings id="5e789dc2-0dbb-4139-85ae-2d894b76ce59">
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="/login/verify" path="/login/verify" id="aaa26877-36b8-4ae7-91ea-bb4266a7ee93">
+  <con:settings id="a93ec7af-a0e2-450e-aaad-355e28ba05a0">
     <con:setting id="aaa26877-36b8-4ae7-91ea-bb4266a7ee93fileName">%2Flogin%2Fverify</con:setting>
   </con:settings>
   <con:parameters/>

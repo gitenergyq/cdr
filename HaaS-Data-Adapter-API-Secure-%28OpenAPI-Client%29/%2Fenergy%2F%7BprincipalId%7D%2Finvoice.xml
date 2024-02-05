@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:resource xmlns:con="http://eviware.com/soapui/config" name="/energy/{principalId}/invoice" path="/energy/{principalId}/invoice" id="3d69e04e-4497-46c2-a9ed-14cd00f8004e">
-  <con:settings id="72e047b7-37d0-4251-a3c8-90df9f803be4">
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="/energy/{principalId}/invoice" path="/energy/{principalId}/invoice" id="3d69e04e-4497-46c2-a9ed-14cd00f8004e">
+  <con:settings id="1e32a51f-9e78-4529-bc8d-698687ccb419">
     <con:setting id="3d69e04e-4497-46c2-a9ed-14cd00f8004efileName">%2Fenergy%2F%7BprincipalId%7D%2Finvoice</con:setting>
   </con:settings>
   <con:parameters/>
@@ -213,6 +213,10 @@
     <con:request name="Request 1" id="98817031-c328-44f2-b1d5-294fe17b9281" mediaType="application/json">
       <con:settings/>
       <con:endpoint>https://ods.data.holder/dio-au/v0</con:endpoint>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
       <con:parameters/>
       <con:environmentSpec>
         <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">

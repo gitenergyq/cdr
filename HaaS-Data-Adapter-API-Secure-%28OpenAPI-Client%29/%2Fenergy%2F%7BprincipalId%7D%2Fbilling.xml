@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:resource xmlns:con="http://eviware.com/soapui/config" name="/energy/{principalId}/billing" path="/energy/{principalId}/billing" id="44b1fb74-171c-48e9-a86c-0239f35f254b">
-  <con:settings id="235d7123-619c-4b6d-bb10-935ab4bc3fc1">
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="/energy/{principalId}/billing" path="/energy/{principalId}/billing" id="44b1fb74-171c-48e9-a86c-0239f35f254b">
+  <con:settings id="c63b2d9b-5145-47e4-9796-d897309ec74f">
     <con:setting id="44b1fb74-171c-48e9-a86c-0239f35f254bfileName">%2Fenergy%2F%7BprincipalId%7D%2Fbilling</con:setting>
   </con:settings>
   <con:parameters/>
@@ -241,6 +241,10 @@ If absent defaults to the following dependent on call:
     <con:request name="Request 1" id="cca11e60-c1b7-43f3-b284-addba29eee49" mediaType="application/json">
       <con:settings/>
       <con:endpoint>https://ods.data.holder/dio-au/v0</con:endpoint>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
       <con:parameters/>
       <con:environmentSpec>
         <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">

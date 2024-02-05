@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" xsi:type="con:RestService" id="8bd6bb9b-f976-48c5-b693-b9a6b824d03b" name="Health" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification">
+  <con:settings id="3afd9dcb-2cd3-40ed-a791-8c2978efa7f6">
+    <con:setting id="8bd6bb9b-f976-48c5-b693-b9a6b824d03bfileName">Health</con:setting>
+  </con:settings>
+  <con:definitionCache type="TEXT" rootPart="Health.json">
+    <con:part>
+      <con:url>Health.json</con:url>
+      <con:content>{"openapi":"3.0.1","info":{"title":"Health","description":"","version":"1.0.0"},"servers":[],"paths":{}}</con:content>
+      <con:type>https://swagger.io/openapiv3/specification</con:type>
+    </con:part>
+  </con:definitionCache>
+  <con:endpoints/>
+</con:interface>

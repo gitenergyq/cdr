@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:resource xmlns:con="http://eviware.com/soapui/config" name="/health" path="/health" id="436c43b3-9823-451b-a663-557ee3838799">
-  <con:settings id="9151236b-1af7-4598-8009-12ae8f214bf3">
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="/health" path="/health" id="436c43b3-9823-451b-a663-557ee3838799">
+  <con:settings id="94eedac9-1aae-4d7a-89f6-a55b2543a504">
     <con:setting id="436c43b3-9823-451b-a663-557ee3838799fileName">%2Fhealth</con:setting>
   </con:settings>
   <con:parameters/>

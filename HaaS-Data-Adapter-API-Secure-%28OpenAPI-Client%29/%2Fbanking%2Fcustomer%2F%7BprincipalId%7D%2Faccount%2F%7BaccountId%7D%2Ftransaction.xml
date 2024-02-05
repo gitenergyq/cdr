@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:resource xmlns:con="http://eviware.com/soapui/config" name="/banking/customer/{principalId}/account/{accountId}/transaction" path="/banking/customer/{principalId}/account/{accountId}/transaction" id="205e3b48-43e0-464a-a50e-02eaea11c7d6">
-  <con:settings id="01126a47-e1f7-41c4-b959-e20c87973581">
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="/banking/customer/{principalId}/account/{accountId}/transaction" path="/banking/customer/{principalId}/account/{accountId}/transaction" id="205e3b48-43e0-464a-a50e-02eaea11c7d6">
+  <con:settings id="a8b5ace7-beb0-4572-99ef-f231c54ef52d">
     <con:setting id="205e3b48-43e0-464a-a50e-02eaea11c7d6fileName">%2Fbanking%2Fcustomer%2F%7BprincipalId%7D%2Faccount%2F%7BaccountId%7D%2Ftransaction</con:setting>
   </con:settings>
   <con:parameters/>
@@ -229,6 +229,10 @@ If absent defaults to the following dependent on call:
     <con:request name="Request 1" id="d7cb8dd5-e69b-455b-8c2d-d0f0d48e2450" mediaType="application/json">
       <con:settings/>
       <con:endpoint>https://ods.data.holder/dio-au/v0</con:endpoint>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
       <con:parameters/>
       <con:environmentSpec>
         <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">

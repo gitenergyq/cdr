@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:resource xmlns:con="http://eviware.com/soapui/config" name="/devices/nmi/frmp" path="/devices/nmi/frmp" id="8b163432-06b0-482d-97a8-8d8e7c2e63cd">
-  <con:settings id="951fc9b0-442e-483a-959f-a1f87129778b">
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="/devices/nmi/frmp" path="/devices/nmi/frmp" id="8b163432-06b0-482d-97a8-8d8e7c2e63cd">
+  <con:settings id="511c1b91-2bb6-4dbc-926f-3c7d3f49c8cf">
     <con:setting id="8b163432-06b0-482d-97a8-8d8e7c2e63cdfileName">%2Fdevices%2Fnmi%2Ffrmp</con:setting>
   </con:settings>
   <con:parameters/>
@@ -78,10 +78,8 @@
   "oldestDate" : "2022-01-03"
 }</con:sampleContent>
     </con:representation>
-    <con:request name="Request 1" id="883d0204-86fa-4ae5-afeb-393522d4d0ce" mediaType="application/json" postQueryString="false">
-      <con:settings>
-        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-      </con:settings>
+    <con:request name="Request 1" id="883d0204-86fa-4ae5-afeb-393522d4d0ce" mediaType="application/json">
+      <con:settings/>
       <con:endpoint>https://ods.data.holder/dio-au/v0</con:endpoint>
       <con:request>{\r
   "version" : "V0",\r
@@ -89,15 +87,11 @@
   "nmi" : [ "string" ],\r
   "oldestDate" : "2022-01-03"\r
 }</con:request>
-      <con:originalUri>https://qu6ri9ljd1.execute-api.ap-southeast-2.amazonaws.com/v1/devices/nmi/frmp</con:originalUri>
       <con:credentials>
         <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
         <con:authType>No Authorization</con:authType>
       </con:credentials>
-      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-      <con:parameters>
-        <con:entry key="x-haas-realm-name" value="EQL"/>
-      </con:parameters>
+      <con:parameters/>
       <con:environmentSpec>
         <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">
           <con:authProfile>CDR</con:authProfile>

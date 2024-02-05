@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:resource xmlns:con="http://eviware.com/soapui/config" name="/login/user" path="/login/user" id="83861fac-8b95-4e23-9895-ae05e293829b">
-  <con:settings id="ddf6cb71-572a-44f1-903c-7ef8e16774f7">
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="/login/user" path="/login/user" id="83861fac-8b95-4e23-9895-ae05e293829b">
+  <con:settings id="dfb05d75-2dae-473a-8dbe-ad86d0f8b318">
     <con:setting id="83861fac-8b95-4e23-9895-ae05e293829bfileName">%2Flogin%2Fuser</con:setting>
   </con:settings>
   <con:parameters/>
@@ -139,25 +139,19 @@ Also used in the Consent Management Dashboard as a way of knowing about the Powe
   "principalId" : "552375cb-9c00-4fde-a0a0-592904a55355"
 }</con:sampleContent>
     </con:representation>
-    <con:request name="Request 1" id="2b732a97-b2dd-45f2-9672-b47315085fe5" mediaType="application/json" postQueryString="false">
-      <con:settings>
-        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-      </con:settings>
+    <con:request name="Request 1" id="2b732a97-b2dd-45f2-9672-b47315085fe5" mediaType="application/json">
+      <con:settings/>
       <con:endpoint>https://ods.data.holder/dio-au/v0</con:endpoint>
       <con:request>{\r
   "version" : "V0",\r
   "userId" : "b5d1da97-a796-4e8f-9221-cc3cffafb567",\r
   "principalId" : "552375cb-9c00-4fde-a0a0-592904a55355"\r
 }</con:request>
-      <con:originalUri>https://qu6ri9ljd1.execute-api.ap-southeast-2.amazonaws.com/v1/login/user</con:originalUri>
       <con:credentials>
         <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
         <con:authType>No Authorization</con:authType>
       </con:credentials>
-      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-      <con:parameters>
-        <con:entry key="x-haas-realm-name" value="EQL"/>
-      </con:parameters>
+      <con:parameters/>
       <con:environmentSpec>
         <con:entry environmentId="ccd694ea-bddb-4933-ad1f-1421ca398183">
           <con:authProfile>CDR</con:authProfile>
